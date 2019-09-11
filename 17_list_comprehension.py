@@ -80,3 +80,13 @@ odd_negative_numbers = [i for i in numbers if (i%2 == 1 and i < 0)]
 
 # Exercise 17 - Make a variable named numbers_plus_5. In it, return a list containing each number plus five. 
 numbers_plus_five = [i+5 for i in numbers]
+
+# BONUS Make a variable named "primes" that is a list containing the prime numbers in the numbers list. *Hint* 
+# you may want to make or find a helper function that determines if a given number is prime or not.
+def is_prime(n):
+    for i in range(2,abs(n)//2+2):
+        if (abs(n) > 2 and n%i == 0) or n < 0:
+            return = False
+    return True
+
+[i for i in numbers if is_prime(i)]
