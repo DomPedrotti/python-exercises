@@ -19,21 +19,11 @@ for i in pay:
      total = i*pay[i]
 print total
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 username = 'codeup'
 password = 'notastrongpassword'
+
+password_greater_than_5_characters = len(password) >= 5
+username_less_than_20_characters = len(username) <= 20
+password_unique_from_username = password = username
+password_and_username_no_whitespace_at_start_or_end = (username[0] != ' ' and username[-1] != ' ' and password[0] != ' ' and password[-1] != ' ')
 
