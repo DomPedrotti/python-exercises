@@ -28,6 +28,9 @@ capitolized_fruits = [i.capitalize() for i in fruits ]
 
 # Exercise 3 - Use a list comprehension to make a variable named fruits_with_more_than_two_vowels. Hint: You'll 
 # need a way to check if something is a vowel.
+def ryan_count_vowels(inpt):
+    return inpt.count('a')+inpt.count('e')+inpt.count('i')+inpt.count('o')+inpt.count('u')
+
 def count_vowels(inpt):
     vowels = ['a', 'e', 'i', 'o', 'u']
     counter = 0
@@ -86,7 +89,7 @@ numbers_plus_five = [i+5 for i in numbers]
 def is_prime(n):
     for i in range(2,abs(n)//2+2):
         if (abs(n) > 2 and n%i == 0) or n < 0:
-            return = False
+            return False
     return True
 
 [i for i in numbers if is_prime(i)]
