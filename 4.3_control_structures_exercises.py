@@ -127,3 +127,16 @@ for i in range(1,int(number)+1):
     blank_space_square = (10 -len(str(i**2))) * " "
     blank_space_cube = (10 -len(str(i**3))) * " "
     print("|" + str(i) + blank_space_number + "|" + str(i**2) + blank_space_square + "|" + str(i**3) + blank_space_cube + "|")
+#Convert given number grades into letter grades.
+number_grade = float(input("What was your grade?\n"))
+if number_grade >= 88:
+    print("Congrats, you got an A")
+elif number_grade >= 80:
+    print("Nice, you gotta B")
+elif number_grade >= 67:
+    print("Good, you got a C")
+elif number_grade >= 60:
+    print("You got a D")
+else:
+    print("Sorry, you got an F")
+#
