@@ -1,6 +1,6 @@
 #dot format on strings
 name = 'dom'
-f'hello, {name}!'
+f'hello {name}!'
 
 #movie rental
 little_mermaid = 3
