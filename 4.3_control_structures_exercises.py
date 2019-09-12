@@ -82,7 +82,7 @@ while number not in range(1,50,2):
             number = int(input('gimme an odd number between 1 and 50\n'))
             break
         except(ValueError):
-            contunue
+            continue
 print(f'Number to skip is: {number}')
 for i in range (1,50,2):
     if i != number:
@@ -139,4 +139,17 @@ elif number_grade >= 60:
     print("You got a D")
 else:
     print("Sorry, you got an F")
-#
+#Create a list of dictionaries where each dictionary represents a book that you have read.
+books = [{"title": "Timeline", "author": "Rick Riordan", "genre": "scifi"}, {"title": "to kill a mockingbird", "author": "Harper Lee", "genre": "historical fiction"},{"title":"The Bluest Eye", "author":"Toni Morrison", "genre":"historical fiction"},{"title":"The Importance of Being Earnest", "author": "Oscar Wilde","genre": "comedy"}]
+genre_list = []
+for i in books:
+    genre_list.append(i["genre"])
+while 'money' != "happiness":
+    book_genre = input("What genre would you like to browse\n").lower()
+    if book_genre in genre_list:
+        break
+    else:
+        print("sorry we don't carry anything in that genre, maybe try something else")
+for i in books:
+    if book_genre == i["genre"]:
+        print(i["title"])
