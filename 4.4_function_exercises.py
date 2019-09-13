@@ -3,16 +3,19 @@
 def is_two(inpt):
     return float(inpt) == 2
 
+is_two = lambda x: x == 2
 #Define a function named is_vowel. It should return True if the passed string is a vowel, 
 # False otherwise.
 def is_vowel(inpt):
     return inpt.lower() in ['a', 'e', 'i', 'o','u']
 
+is_vowel = lambda x: x.lower() in ['a', 'e', 'i', 'o','u']
 #Define a function named is_consonant. It should return True if the passed string is a 
 # consonant, False otherwise. Use your is_vowel function to accomplish this.
 def is_consonant(inpt):
     return inpt.lower() not in ['a', 'e', 'i', 'o','u']
 
+is_consonant = lambda x: x.lower() not in ['a', 'e', 'i', 'o','u']
 #Define a function named calculate_tip. It should accept a tip percentage (a number between
 #  0 and 1) and the bill total, and return the amount to tip.
 def calculate_tip(percentage, bill_total):
