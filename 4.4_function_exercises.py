@@ -62,6 +62,18 @@ def remove_vowels(inpt):
     # everything should be lowercase
     # spaces should be replaced with underscores
 def normalize_name(inpt):
+    '''
+    takes input and returns normalized name
+
+    normalize_name('Name')
+    >>> 'name'
+
+    normalize_name('First Name')
+    >>> 'first_name'
+
+    normalize_name('% Completed')
+    >>> 'completed'
+    '''
     work_in_progress = ''
     #return_name = ''
     for i in inpt:

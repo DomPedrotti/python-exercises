@@ -20,6 +20,7 @@ while action != '4':
     elif action == '3':
         deposite_amount = input("\nHow much is the credit? ")
         make_transaction(-1 * int(deposite_amount))
-        
+
     else:
+        print "\nThanks and have a great day!"
         break

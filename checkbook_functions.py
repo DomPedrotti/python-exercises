@@ -1,5 +1,7 @@
 def check_balance():
-    """check_balance() takes no arguments and returns the sum of transactions.csv"""
+    '''
+    check_balance() takes no arguments and returns the sum of transactions.csv
+    '''
     import csv
     with open("transactions.csv") as file:
         balance = 0
