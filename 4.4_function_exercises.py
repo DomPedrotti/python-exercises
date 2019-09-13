@@ -54,6 +54,7 @@ def remove_vowels(inpt):
         if character not in ['a', 'e', 'i', 'o', 'u']:
             return_string += character
     return return_string
+
 # Define a function named normalize_name. It should accept a string and return a valid 
 # python identifier, that is:
     # anything that is not a valid python identifier should be removed
@@ -62,7 +63,7 @@ def remove_vowels(inpt):
     # spaces should be replaced with underscores
 def normalize_name(inpt):
     work_in_progress = ''
-    return_name = ''
+    #return_name = ''
     for i in inpt:
         if i.isalpha() or i == ' ':
             work_in_progress += i.lower()
@@ -70,11 +71,12 @@ def normalize_name(inpt):
         work_in_progress = work_in_progress[1:]
     while not work_in_progress[-1].isalpha():
         work_in_progress = work_in_progress[:-1]
-    for i in work_in_progress:
-        if i != ' ':
-            return_name += i
-        else:
-            return_name += '_'
+    # for i in work_in_progress:
+    #     if i != ' ':
+    #         return_name += i
+    #     else:
+    #         return_name += '_'
+    return_name = work_in_progress.replace(' ', '_')
     return return_name
 print(normalize_name('% Completed'))
 
