@@ -11,6 +11,9 @@ def check_balance():
 
 
 def make_transaction(amount,category,timestamp):
+    '''
+    make_transaction() takes in transaction amount, category and the time the transaction was maded and stores them in transactions.csv
+    '''
     import csv
     fields = [amount, category, timestamp]
     with open(r'transactions.csv', 'a') as file:
