@@ -10,9 +10,9 @@ def check_balance():
     return balance
 
 
-def make_transaction(amt):
+def make_transaction(amount,category,timestamp):
     import csv
-    fields = [amt]
+    fields = [amount, category, timestamp]
     with open(r'transactions.csv', 'a') as file:
         writer = csv.writer(file)
         writer.writerow(fields)
