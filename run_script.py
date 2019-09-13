@@ -3,5 +3,5 @@ def col_index(column_name):
     index = 0
     for i in range(1,len(column_name)+1):
         index += (alpha.index(column_name[-i].lower())+1 )* (26 ** (i-1))
-        return index
-print(col_index('AA'))
+    return index
+print(col_index('zz'))

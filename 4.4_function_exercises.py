@@ -81,4 +81,34 @@ def cumsum(numbers):
     for i in range(1, len(numbers)):
         numbers[i] += sum(numbers[i-1:i])
     return numbers
+#Create a function named twelveto24. It should accept a string in the format 10:45am or 
+# 4:30pm and return a string that is the representation of the time in a 24-hour format. 
 
+def twelveto24(time):
+    if time[-2:] == 'am' and time[:-5] != '12':
+        return time[:-2]
+    elif time[-2:] == 'am' and time[:-5] == '12':
+        return '00' + time[-5:-2]
+    elif time[-2:] == 'pm' and time[:-5] == '12':
+        return time[:-2]
+    else:
+        time = str(int(time[:-5]) + 12) + time[-5:-2]
+        return time
+#Bonus write a function that does the opposite.
+def militarytostandard(time):
+    if int(time[:-3]) >= 13:
+        return str(int(time[:-3])-12) + time[-3:] + 'pm'
+    elif int(time[:-3]) == 12:
+        return time + 'pm'
+    elif int(time[:-3]) >= 1:
+        return time + 'am'
+    else:
+        return str(int(time[:-3]) + 12) + time[-3:] + 'am'
+#Create a function named col_index. It should accept a spreadsheet column name, and return 
+# the index number of the column.
+def col_index(column_name):
+    alpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    index = 0
+    for i in range(1,len(column_name)+1):
+        index += (alpha.index(column_name[-i].lower())+1 )* (26 ** (i-1))
+    return index
