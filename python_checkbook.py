@@ -1,6 +1,10 @@
 import csv
 from checkbook_functions import make_transaction, check_balance, add_description
 from time import time, sleep
+
+#prompt username and open associated table
+### username = check_username()
+
 #Print welcome message and show options for input selection
 print("~~~~ Welcome to your Terminal Checkbook! ~~~~\n")
 action = ''

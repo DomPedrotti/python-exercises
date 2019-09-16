@@ -46,8 +46,15 @@ def print_table():
     print ('*------------------------------------------------------------------------*')
     
 
+def check_username():
+    import pymysql
+    help(pymysql)
+
+check_username()
+
 def update_sql_table():
     import pymysql
+
 
 
 
