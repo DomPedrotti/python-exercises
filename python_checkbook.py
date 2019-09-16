@@ -1,5 +1,5 @@
 import csv
-from checkbook_functions import make_transaction, check_balance, add_description, update_sql_table
+from checkbook_functions import make_transaction, check_balance, add_description, update_sql_table, select_all, print_table
 from time import time, sleep
 
 #prompt username and open associated table
@@ -14,7 +14,7 @@ while action != '5':
 
     action = input("\nYour Choice? ")
     while action not in ['1','2','3','4','5']:
-        action = input("Sorry, Your Selection is Invalid:\n\nPlease enter one of the following (1, 2, 3, or 4) ")
+        action = input("Sorry, Your Selection is Invalid:\n\nPlease enter one of the following (1, 2, 3, 4, or 5) ")
 
     if action == '1':
         print(f"\nYour balance is ${check_balance()}")
@@ -27,14 +27,21 @@ while action != '5':
         else:
             amount = input("\nHow much is the credit? ")
             amount = int(amount) * -1
-        category = input("what is this transaction for? ")
+        category = input("what is this transaction category? ")
         description = add_description()
         time = time()
         update_sql_table(time, amount, category, description)
 
     elif action == '4':
-        input('Would you like to...\a\a1) See All Transactions\n2) Filter Search')
+        view_history = input('Would you like to...\a\a1) See All Transactions\n2) Filter Search')
         
+        if view_history.strip() == '1':
+            table = select_all()
+            print_table(table)
+
+
+
+
     elif action == '5':
         print("\nThanks and have a great day!\n")
         break

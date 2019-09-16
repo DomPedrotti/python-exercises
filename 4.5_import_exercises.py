@@ -84,7 +84,3 @@ for i in data:
     else:
         total_unread_messages += int(i['greeting'][-18:-16])
 print(total_unread_messages)
-
-#zach's way
-def extract_digits(s):
-        return ''.join([c for c in s if c.isdigit()])

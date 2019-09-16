@@ -55,7 +55,6 @@ def print_table(raw_table):
     print ('*------------------------------------------------------------------------*')
     print ('|Date          |Amount    |Category       |Description                   |')
     print ('*------------------------------------------------------------------------*')
-    raw_table = [('1568666207.06298', -400.0, 'food', 'went to the grocerie store to buy food but there wasnt any food to be had')]
     for i in raw_table:
         date_col = '|' + date_from_timestamp(float(i[0])) + '|'
         # print((10-len(str(i[1])) *' '))
@@ -97,8 +96,6 @@ def update_sql_table(time, amount, category, description):
 
     conn.close()
 
-def open_user_table():
-    pass
 
 def add_new_user_table(user):
     import sqlite3
@@ -107,12 +104,20 @@ def add_new_user_table(user):
 
     c.execute("CREATE TABLE " + user + " (date text, amount real, Category text, description text)")
 
-    c.execute(" insert into usernames values("+user+")")
+    c.execute("insert into usernames values("+user+")")
 
-    
+    conn.close()
 
+def select_all():
+    import sqlite3
+    conn = sqlite3.connect('checkbook.db')
+    c = conn.cursor()
 
-    pass
+    table = []
+    for row in c.execute("SELECT * FROM dom"):
+        table.append(row)
+    conn.close()
+    return table
 
 
 
