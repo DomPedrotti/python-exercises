@@ -1,5 +1,5 @@
 import csv
-from checkbook_functions import make_transaction, check_balance, add_description, update_sql_table, select_all, print_table
+from checkbook_functions import check_balance, add_description, update_sql_table, select_all, print_table, search_by_date, search_by_category, search_by_keyword
 from time import time, sleep
 
 #prompt username and open associated table
@@ -33,12 +33,22 @@ while action != '5':
         update_sql_table(time, amount, category, description)
 
     elif action == '4':
-        view_history = input('Would you like to...\a\a1) See All Transactions\n2) Filter Search')
+        view_history = input('Would you like to...\n\n1) See All Transactions\n2) Filter Search\n')
         
         if view_history.strip() == '1':
             table = select_all()
             print_table(table)
-
+        else: 
+            search_by = input("Would You Like to... \n1) Search by Date \n2) Search by Category \n3) Search by Key Word?\n")
+            if search_by == '1':
+                table = search_by_date()
+                print_table(table)
+            elif search_by == '2':
+                table = search_by_category()
+                print_table(table)
+            else:
+                table = search_by_keyword()
+                print_table(table)
 
 
 

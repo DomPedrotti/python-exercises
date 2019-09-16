@@ -58,7 +58,7 @@ def print_table(raw_table):
     for i in raw_table:
         date_col = '|' + date_from_timestamp(float(i[0])) + '|'
         # print((10-len(str(i[1])) *' '))
-        amount_col = str(i[1]) + (10-len(str(i[1]))) *' ' + '|'
+        amount_col = (10-len(str(i[1]))) * ' ' + str(i[1]) + '|'
         category_col = i[2] + (15-len(i[2])) * ' ' + '|'
         description = string_wrap_text(i[3], 30).split('\n')
         description_col = description[0] + (30-len(description[0])) * ' ' + '|'
@@ -119,6 +119,49 @@ def select_all():
     conn.close()
     return table
 
+def search_by_date():
+    start_date = input("Enter Start Date (MM/DD/YYYY) ")
+    end_date = input("Enter End Date (MM/DD/YYYY) ")
+    date_range = (timestamp_from_date(start_date), timestamp_from_date(end_date) + 86400)
+    import sqlite3
+    conn = sqlite3.connect('checkbook.db')
+    c = conn.cursor()
+
+    table = []
+    for row in c.execute("SELECT * FROM dom WHERE date BETWEEN ? and ?", date_range):
+        table.append(row)
+    conn.close()
+    return table
+
+def search_by_category():
+    category = input("What Category Would You Like to Filter By? ")
+    import sqlite3
+    conn = sqlite3.connect('checkbook.db')
+    c = conn.cursor()
+
+    table = []
+    for row in c.execute("SELECT * FROM dom WHERE Category = ?", [category]):
+        table.append(row)
+    conn.close()
+    return table
+
+def search_by_keyword():
+    keyword = input('Enter Keyword ')
+    import sqlite3
+    conn = sqlite3.connect('checkbook.db')
+    c = conn.cursor()
+
+    table = []
+    for row in c.execute("SELECT * FROM dom WHERE description LIKE '%" +keyword+"%'"):
+        table.append(row)
+    conn.close()
+    return table
+
+def timestamp_from_date(date):
+    import time
+    from datetime import datetime
+    timestamp = datetime(int(date[-4:]), int(date[:2]), int(date[3:5]), 0, 0).timestamp()
+    return timestamp
 
 
 def date_from_timestamp(timestamp):
