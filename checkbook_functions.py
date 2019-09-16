@@ -1,14 +1,25 @@
-def check_balance():
-    '''
-    check_balance() takes no arguments and returns the sum of transactions.csv
-    '''
-    import csv
-    with open("transactions.csv") as file:
-        balance = 0
-        for row in csv.reader(file):
-            balance += float(row[0])
-    return balance
+# def check_balance():
+    # '''
+    # check_balance() takes no arguments and returns the sum of transactions.csv
+    # '''
+    # import csv
+    # with open("transactions.csv") as file:
+    #     balance = 0
+    #     for row in csv.reader(file):
+    #         balance += float(row[0])
+    # return balance
 
+def check_balance():
+    import sqlite3
+    conn = sqlite3.connect('checkbook.db')
+    c = conn.cursor()
+
+    rows = []
+    for row in c.execute('SELECT amount FROM dom'):
+        rows.append(row[0])
+    return sum(rows)
+
+    conn.close()
 
 def make_transaction(amount,category,description,timestamp):
     '''
@@ -40,22 +51,68 @@ def add_description():
         print('~No Description~')
         return 'n/a'
         
-def print_table():
+def print_table(raw_table):
     print ('*------------------------------------------------------------------------*')
     print ('|Date          |Amount    |Category       |Description                   |')
     print ('*------------------------------------------------------------------------*')
-    
+    raw_table = [('1568666207.06298', -400.0, 'food', 'went to the grocerie store to buy food but there wasnt any food to be had')]
+    for i in raw_table:
+        date_col = '|' + date_from_timestamp(float(i[0])) + '|'
+        # print((10-len(str(i[1])) *' '))
+        amount_col = str(i[1]) + (10-len(str(i[1]))) *' ' + '|'
+        category_col = i[2] + (15-len(i[2])) * ' ' + '|'
+        description = string_wrap_text(i[3], 30).split('\n')
+        description_col = description[0] + (30-len(description[0])) * ' ' + '|'
+        print(date_col + amount_col + category_col+ description_col )
+        for i in description[1:]:
+            print('|              |          |               |' + i + (30 -len(i)) * ' ' +'|')
+        print ('*------------------------------------------------------------------------*')
 
 def check_username():
     import pymysql
-    help(pymysql)
+    new_or_existing_user = input('Are you an existing user? (y/n) ')
+    #**add while to check input later
+    if new_or_existing_user.strip().lower() == 'y':
+        username = input('please Enter Username\n')
+    #**add while to verify real user
+        return username
+    else:
+        new_username = input('please enter username')
+        
+    #**add while to check if username already taken
+        add_new_user_table(new_username)
+        return new_username
 
-check_username()
 
-def update_sql_table():
-    import pymysql
+def update_sql_table(time, amount, category, description):
+    import sqlite3
+    conn = sqlite3.connect('checkbook.db')
+    
+    c = conn.cursor()
+
+    transaction = (time, amount, category, description,)
+    c.execute("INSERT INTO dom VALUES (?,?,?,?)", transaction)
+
+    conn.commit()
+
+    conn.close()
+
+def open_user_table():
+    pass
+
+def add_new_user_table(user):
+    import sqlite3
+    conn = sqlite3.connect('checkbook.db')
+    c = conn.cursor()
+
+    c.execute("CREATE TABLE " + user + " (date text, amount real, Category text, description text)")
+
+    c.execute(" insert into usernames values("+user+")")
+
+    
 
 
+    pass
 
 
 
@@ -78,6 +135,3 @@ def string_wrap_text(string, width):
             return_string += ('\n' + i + ' ') 
             running_len = len(return_string)-len('\n' + i + ' ')
     return return_string
-
-
-

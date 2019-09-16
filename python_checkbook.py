@@ -1,5 +1,5 @@
 import csv
-from checkbook_functions import make_transaction, check_balance, add_description
+from checkbook_functions import make_transaction, check_balance, add_description, update_sql_table
 from time import time, sleep
 
 #prompt username and open associated table
@@ -30,7 +30,7 @@ while action != '5':
         category = input("what is this transaction for? ")
         description = add_description()
         time = time()
-        make_transaction(amount, category, description, time)
+        update_sql_table(time, amount, category, description)
 
     elif action == '4':
         input('Would you like to...\a\a1) See All Transactions\n2) Filter Search')

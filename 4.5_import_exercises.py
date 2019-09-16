@@ -20,11 +20,11 @@ print(len(data))
 
 # Number of active users
 print("number of active users")
-print(len([i for i in data if i['isActive'] == True])) 
+print(len([i for i in data if i['isActive']])) 
 
 # Number of inactive users
 print('number of inactive users')
-print(len([i for i in data if i['isActive'] == False]))
+print(len([i for i in data if not i['isActive']]))
 
 # Grand total of balances for all users
 def handle_commas(inpt):
@@ -47,13 +47,15 @@ print(average_list(balances))
 print('user with lowest balance')
 for i in data:
     if min(balances) == float(handle_commas(i['balance'][1:])):
-        print(i['name'])
+        print(i)
+#zach's way
+#min(data, key=lambda profile: handle_balance(profile['balance')))
 
 # User with the highest balance
 print('user with highest balance')
 for i in data:
     if max(balances) == float(handle_commas(i['balance'][1:])):
-        print(i['name'])
+        print(i)
 
 # Most common favorite fruit
 print("most common favorite fruit")
@@ -64,10 +66,15 @@ for i in data:
     else:
         fruit_count[i['favoriteFruit']] += 1
 print(max(fruit_count))
+#zach's way
+from collections import Counter
+Counter([p['favoriteFruit'] for p in data])
+set([p['favoriteFruit'] for p in data])
 
 # Least most common favorite fruit
 print('least most common favorite fruit')
-print(min(fruit_count))
+print(min(fruit_count)
+
 # Total number of unread messages for all users
 print('total number of unread messages for all users')
 total_unread_messages = 0
@@ -78,4 +85,6 @@ for i in data:
         total_unread_messages += int(i['greeting'][-18:-16])
 print(total_unread_messages)
 
-#[-18:-19]
+#zach's way
+def extract_digits(s):
+        return ''.join([c for c in s if c.isdigit()])
