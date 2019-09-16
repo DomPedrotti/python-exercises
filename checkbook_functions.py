@@ -41,10 +41,13 @@ def add_description():
         return 'n/a'
         
 def print_table():
-    print ('*-------------------------------------------------------------------*')
-    print ('|Date          |Amount    |Category  |Description                   |')
-    print ('*-------------------------------------------------------------------*')
+    print ('*------------------------------------------------------------------------*')
+    print ('|Date          |Amount    |Category       |Description                   |')
+    print ('*------------------------------------------------------------------------*')
     
+
+def update_sql_table():
+    import pymysql
 
 
 
