@@ -1,8 +1,8 @@
 import sqlite3
-# conn = sqlite3.connect('checkbook.db')
-# c = conn.cursor()
+conn = sqlite3.connect('checkbook.db')
+c = conn.cursor()
 
-#c.execute("CREATE TABLE usernames (username text)")
+#c.execute("CREATE TABLE users (username text, password text)")
 
 #create table
 #c.execute('''
@@ -10,23 +10,23 @@ import sqlite3
 #(date text, trans text, symbol text, qty real, price real) ''')
 
 #insert row
-# c.execute("insert into usernames values ('dom')")
+#c.execute("insert into users values ('dom', '     ')")
 # #save changes
-# conn.commit()
+#conn.commit()
 
 
 
-
+#c.execute("insert into users values ('jon', 'jon')")
 # #close connection
-# conn.close()
+#conn.close()
 
-conn = sqlite3.connect('checkbook.db')
-c = conn.cursor()
+#conn = sqlite3.connect('checkbook.db')
+#c = conn.cursor()
 
-
-
+c.execute("DROP TABLE jon;")
+conn.commit()
 #show row
-for row in c.execute('SELECT * FROM dom'):
-    print(type(row[0]))
+for row in c.execute('SELECT * FROM users'):
+    print(row)
 
 conn.close()

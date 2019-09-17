@@ -1,13 +1,13 @@
-# def check_balance():
-    # '''
-    # check_balance() takes no arguments and returns the sum of transactions.csv
-    # '''
-    # import csv
-    # with open("transactions.csv") as file:
-    #     balance = 0
-    #     for row in csv.reader(file):
-    #         balance += float(row[0])
-    # return balance
+def CSV_check_balance():
+    '''
+    check_balance() takes no arguments and returns the sum of transactions.csv
+    '''
+    import csv
+    with open("transactions.csv") as file:
+        balance = 0
+        for row in csv.reader(file):
+            balance += float(row[0])
+    return balance
 
 def check_balance():
     import sqlite3
@@ -163,7 +163,6 @@ def timestamp_from_date(date):
     timestamp = datetime(int(date[-4:]), int(date[:2]), int(date[3:5]), 0, 0).timestamp()
     return timestamp
 
-
 def date_from_timestamp(timestamp):
     from datetime import date, datetime
     ugly_date = datetime.fromtimestamp(timestamp)
@@ -185,19 +184,23 @@ def string_wrap_text(string, width):
     return return_string
 
 def check_value(value):
+    value = check_valid_number(value)
+    while float(value) > 50000 and float(value) >= 0:
+        value = input("\nWe Do Not Accept Withdrawls or Deposits \nof Greater Than 50,000 at a Time, \n\nPlease Enter A Value of Up to 50,000.00 ")
+        value = check_valid_number(value)
+
+def pick_one(choices):
+    from pick import pick
+    ask = "Sorry, Your Selection is Invalid,\n\nPlease Select One of the Following:"
+    selection, index = pick(choices, ask, indicator = '->')
+    return selection, str(index + 1)
+
+def check_valid_number(value):
     while True:
         try:
             float(value)
-            while float(value) > 50000 and float(value) >= 0:
-                value = input("We Do Not Accept Withdrawls or Deposits\n of Greater Than 50,000 at a Time, \nPlease Enter A Number Less Than 50,000.01 ")
-                while True:
-                    try:
-                        float(value)
-                        break
-                    except TypeError:
-                        print('Please Enter A Valid, Positive Number ')
-                        continue
             break
-        except ValueError:
-            value = input("Please Enter a Valid, Positive Number ")
+        except(ValueError):
+            value = input('Please Enter a Valid, Positive Number ')
             continue
+    return value
