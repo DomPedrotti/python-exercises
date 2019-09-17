@@ -183,3 +183,21 @@ def string_wrap_text(string, width):
             return_string += ('\n' + i + ' ') 
             running_len = len(return_string)-len('\n' + i + ' ')
     return return_string
+
+def check_value(value):
+    while True:
+        try:
+            float(value)
+            while float(value) > 50000 and float(value) >= 0:
+                value = input("We Do Not Accept Withdrawls or Deposits\n of Greater Than 50,000 at a Time, \nPlease Enter A Number Less Than 50,000.01 ")
+                while True:
+                    try:
+                        float(value)
+                        break
+                    except TypeError:
+                        print('Please Enter A Valid, Positive Number ')
+                        continue
+            break
+        except ValueError:
+            value = input("Please Enter a Valid, Positive Number ")
+            continue

@@ -1,5 +1,5 @@
 import csv
-from checkbook_functions import check_balance, add_description, update_sql_table, select_all, print_table, search_by_date, search_by_category, search_by_keyword
+from checkbook_functions import check_balance, add_description, update_sql_table, select_all, print_table, search_by_date, search_by_category, search_by_keyword, check_value
 from time import time, sleep
 
 #prompt username and open associated table
@@ -23,10 +23,13 @@ while action != '5':
 
     elif action == '2' or action == '3':
         if action == '2':    
-            amount = input("\nHow much is the debit? ")
+            amount = input("\nHow Much Would You Like to Deposite? ")
+            check_value(amount)
+                   
         else:
-            amount = input("\nHow much is the credit? ")
-            amount = int(amount) * -1
+            amount = input("\nHow Much Would You Like to Withdrawl? ")
+            check_value(amount)
+            amount = float(amount) * -1
         category = input("what is this transaction category? ")
         description = add_description()
         time = time()
@@ -46,11 +49,9 @@ while action != '5':
             elif search_by == '2':
                 table = search_by_category()
                 print_table(table)
-            else:
+            elif search_by == '3':
                 table = search_by_keyword()
                 print_table(table)
-
-
 
     elif action == '5':
         print("\nThanks and have a great day!\n")
