@@ -1,4 +1,5 @@
-from checkbook_functions import timestamp_from_date
+from checkbook_functions import timestamp_from_date, pick_one
+
 
 def update_sql_table(time, amount, category, description, username):
     import sqlite3
@@ -36,7 +37,6 @@ def select_usernames():
     for user in c.execute('SELECT username FROM users'):
         users.append(user[0])
     return users
-print (select_usernames())
 
 def check_password(username, password):
     #select password
@@ -63,13 +63,23 @@ def search_by_date(user):
     return table
 
 def search_by_category(user):
-    category = input("What Category Would You Like to Filter By? ")
+    choose_category = input("Type 'D' to see Deposits and 'W' to see Withdrawals")
+    while True:
+        if choose_category.lower() in ['w', 0]:
+            category = 'Withdrawal'
+            break
+        elif choose_category.lower() in ['d', 1]:
+            category = 'Deposit'
+            break
+        else:
+            category, choose_category = pick_one(['Deposit', 'Withdrawal'])
+            break
     import sqlite3
     conn = sqlite3.connect('checkbook.db')
     c = conn.cursor()
 
     table = []
-    for row in c.execute("SELECT * FROM " + user + " WHERE Category = ?", [category]):
+    for row in c.execute("SELECT * FROM " + user + " WHERE Category = ?",  [category]):
         table.append(row)
     conn.close()
     return table

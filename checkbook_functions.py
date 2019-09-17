@@ -134,7 +134,17 @@ def search_by_date():
     return table
 
 def search_by_category():
-    category = input("What Category Would You Like to Filter By? ")
+    choose_category = input("Type 'D' to see Deposits and 'W' to see Withdrawals")
+    while True:
+        if choose_category.lower() in ['w', 0]:
+            category = 'Withdrawal'
+            break
+        elif choose_category.lower() in ['d', 1]:
+            category = 'Deposit'
+            break
+        else:
+            category, choose_category = pick_one(['Deposit', 'Withdrawal'])
+            break
     import sqlite3
     conn = sqlite3.connect('checkbook.db')
     c = conn.cursor()

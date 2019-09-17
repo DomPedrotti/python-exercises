@@ -16,7 +16,7 @@ def log_on():
 
 
 def new_or_existing_user():
-    prompt = "Are You a New or Exising User?"
+    prompt = "Are You a New or Exising User? (Use Arrow Keys to Make Selection)"
     choices = ['Current User', 'New User', 'Exit']
     identify, index = pick(choices, prompt, indicator = '->')
     
@@ -29,6 +29,7 @@ def new_or_existing_user():
 
 
 def enter_user_and_password():
+    print("Please Enter Login Information: ")
     all_usernames = select_usernames()
     username = input('Username: ')
     while username not in all_usernames:
@@ -54,7 +55,7 @@ def create_account():
     username = input('New Username: ')
     password = input('Password: ')
     add_new_user_table(username, password)
-
+    Print("\n Congratulations, you're all set!\n")
 
 
 

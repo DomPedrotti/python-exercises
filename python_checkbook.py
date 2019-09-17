@@ -3,14 +3,20 @@ from cb_sql_functions import update_sql_table, select_all, search_by_date, searc
 from checkbook_functions import check_balance, add_description, print_table, check_value, pick_one
 from time import time
 from pick import pick 
+print("\n\n ~~~~ Welcome to your Terminal Checkbook! ~~~~\n")
 username = log_on()
+
 #prompt username and open associated table
 ### username = check_username()
 
 #Print welcome message and show options for input selection
-print("~~~~ Welcome to your Terminal Checkbook! ~~~~\n")
+
 while True:
-    options = ('1) Check Balance', '2) Make a Deposit', '3) Make a Withdrawl', '4) Search History', '5) Exit')
+    if username == None:
+        print ("Goodbye!")
+        break 
+
+    options = ('1) Check Balance', '2) Make a Deposit', '3) Make a Withdrawal', '4) Search History', '5) Exit')
     print(f"\nWhat would you like to do? \n\n{options[0]} \n{options[1]} \n{options[2]} \n{options[3]} \n{options[4]}")
     action = input("\nYour Choice? ")
     
@@ -23,14 +29,14 @@ while True:
 
     elif action == '2' or action == '3':
         if action == '2':    
-            amount = input("\nHow Much Would You Like to Deposite? ")
+            amount = input("\nHow Much Would You Like to Deposit? ")
             check_value(amount)
-                   
+            category = "Deposit"
         else:
-            amount = input("\nHow Much Would You Like to Withdrawl? ")
+            amount = input("\nHow Much Would You Like to Withdrawal? ")
             check_value(amount)
             amount = float(amount) * -1
-        category = input("what is this transaction category? ")
+            Category = 'Withdrawal'
         description = add_description()
         time = time()
         update_sql_table(time, amount, category, description, username)
