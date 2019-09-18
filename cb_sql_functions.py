@@ -2,6 +2,11 @@ from checkbook_functions import timestamp_from_date, pick_one
 
 
 def update_sql_table(time, amount, category, description, username):
+    '''
+    receives time (as a timestamp), transaction amount, transaction category and description, and the user's username
+    uses username to reference user's unique transaction table from sql checkbook.db
+    inserts new information row into user's tranaction column
+    '''
     import sqlite3
     conn = sqlite3.connect('checkbook.db')
     
@@ -16,6 +21,10 @@ def update_sql_table(time, amount, category, description, username):
     conn.close()
 
 def add_new_user_table(user, password):
+    '''
+    receives new user name and initializes blank transaction table for new user and appends username table to contain new username
+    this one is out of date from the used one, lacks commit statement and user password argument
+    '''
     import sqlite3
     conn = sqlite3.connect('checkbook.db')
     c = conn.cursor()
@@ -30,6 +39,10 @@ def add_new_user_table(user, password):
     conn.close()
 
 def select_usernames():
+    '''
+    uses sql SELECT statement to build a list of all usernames
+    returns list of existing users
+    '''
     import sqlite3
     conn = sqlite3.connect('checkbook.db')
     c = conn.cursor()
@@ -39,6 +52,10 @@ def select_usernames():
     return users
 
 def check_password(username, password):
+    '''
+    takes in input of username and password attempt
+    returns false if provided password does not match username in users table
+    '''
     #select password
     import sqlite3
     conn = sqlite3.connect('checkbook.db')
@@ -49,6 +66,9 @@ def check_password(username, password):
     return t_f
 
 def search_by_date(user):
+    '''
+    Refines transaction table select to dates within 12:00:00am on startdate and 11:59:59pm on end date
+    '''
     start_date = input("Enter Start Date (MM/DD/YYYY) ")
     end_date = input("Enter End Date (MM/DD/YYYY) ")
     date_range = (timestamp_from_date(start_date), timestamp_from_date(end_date) + 86400)
@@ -63,6 +83,9 @@ def search_by_date(user):
     return table
 
 def search_by_category(user):
+    '''
+    filters select statement to return either all withdrawals or all deposits
+    '''
     choose_category = input("Type 'D' to see Deposits and 'W' to see Withdrawals")
     while True:
         if choose_category.lower() in ['w', 0]:
@@ -85,6 +108,20 @@ def search_by_category(user):
     return table
 
 def search_by_keyword(user):
+    '''
+    refines select statement by keyword found in description
+    '''
+    keyword = input('Enter Keyword ')
+    import sqlite3
+    conn = sqlite3.connect('checkbook.db')
+    c = conn.cursor()
+
+    table = []
+    for row in c.execute("SELECT * FROM dom WHERE description LIKE '%" +keyword+"%'"):
+        table.append(row)
+    conn.close()
+    return table
+
     keyword = input('Enter Keyword ')
     import sqlite3
     conn = sqlite3.connect('checkbook.db')
