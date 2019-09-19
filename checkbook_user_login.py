@@ -24,8 +24,6 @@ def log_on():
         create_account()
         return enter_user_and_password()
     
-
-
 def new_or_existing_user():
     '''
     verifies user is either new or existing, also provides user a chance to exit program
@@ -40,7 +38,6 @@ def new_or_existing_user():
         return True
     else:
         return False
-
 
 def enter_user_and_password():
     '''
