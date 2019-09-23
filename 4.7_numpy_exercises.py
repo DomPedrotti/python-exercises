@@ -2,7 +2,7 @@ import numpy as np
 #Use the following code for the questions below:
 a = np.array([4, 10, 12, 23, -2, -1, 0, 0, 0, -6, 3, -7])
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-print(f"\n\nOur first Array, a, is {a}")
+print(f"\n\nOur first Array, a, is {a}\n")
 
 # How many negative numbers are there?
 a_negatives = a[a < 0]
