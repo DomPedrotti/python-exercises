@@ -1,6 +1,8 @@
 import numpy as np 
 #Use the following code for the questions below:
 a = np.array([4, 10, 12, 23, -2, -1, 0, 0, 0, -6, 3, -7])
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print(f"\n\nOur first Array, a, is {a}")
 
 # How many negative numbers are there?
 a_negatives = a[a < 0]
@@ -22,7 +24,7 @@ print("If we add 3, there are {} positive numbers\n".format(len(a_plus_3_positiv
 # If you squared each number, what would the new mean and standard deviation be?
 a_squared = a ** 2
 print("If we squared our array, our mean would change from \n{} to {}\n".format(np.mean(a), np.mean(a_squared)))
-print("If we squared our array, our mean would change from \n{} to {}\n".format(np.std(a), np.std(a_squared)))
+print("If we squared our array, our standard deviation would change from \n{} to {}\n".format(np.std(a), np.std(a_squared)))
 
 # A common statistical operation on a dataset is centering. This means to adjust the data such that the center of the data is at 0. This is done by subtracting the mean from each data point. Center the data set.
 centered_a = a - np.mean(a)
@@ -138,38 +140,39 @@ c = [
     [7, 8, 9]
 ]
 c = np.array(c)
-
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print(f"\n\nOur next array, c, is \n{c}\n")
 # HINT, you'll first need to make sure that the "c" variable is a numpy array prior to using numpy array methods.
 # Exercise 1 - Find the min, max, sum, and product of c.
 min_of_c = np.min(c)
 max_of_c = np.max(c)
 sum_of_c = np.sum(c)
 product_of_c = np.product(c)
-print("The min, max, sum, and product of c are {}, {}, {}, and {}, respectively".format(min_of_c, max_of_c, sum_of_c, product_of_c))
+print("The min, max, sum, and product of c are {}, {}, {}, and {}, respectively\n".format(min_of_c, max_of_c, sum_of_c, product_of_c))
 
 # Exercise 2 - Determine the standard deviation of c.
 c_std = np.std(c)
-print(f"The standard deviation of c is {c_std}")
+print(f"The standard deviation of c is {c_std}\n")
 
 # Exercise 3 - Determine the variance of c.
 c_variance = np.var(c)
-print(f"The variance of c is {c_variance}")
+print(f"The variance of c is {c_variance}\n")
 
 # Exercise 4 - Print out the shape of the array c
 c_shape = np.shape(c)
-print(f"The shape of c is {c_shape}")
+print(f"The shape of c is {c_shape}\n")
 
 # Exercise 5 - Transpose c and print out transposed result.
 c_transpose = np.transpose(c)
-print(f"The transpose of c is\n{c_transpose}")
+print(f"The transpose of c is\n{c_transpose}\n")
 
 # Exercise 6 - Multiply c by the c-Transposed and print the result.
 gramian_matrix_c = c * c_transpose
-print(f"The Gramian Matrix of c is \n{gramian_matrix_c}")
+print(f"The Gramian Matrix of c is \n{gramian_matrix_c}\n")
 
 # Exercise 7 - Write the code necessary to sum up the result of c times c transposed. Answer should be 261
 sum_gram_c = np.sum(gramian_matrix_c)
-print(f"the sum of the Gramian Matrix of c is {sum_gram_c}")
+print(f"the sum of the Gramian Matrix of c is {sum_gram_c}\n")
 
 # Exercise 8 - Write the code necessary to determine the product of c times c transposed. Answer should be 131681894400.
 product_gram_c = np.product(gramian_matrix_c)
@@ -183,42 +186,43 @@ d = [
     [60, 45, -45, 90, -45, 180]
 ]
 d = np.array(d)
-print(f"\n\n Our new array, d, is\n{d}")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print(f"\n\n Our new array, d, is\n{d}\n")
 # Exercise 1 - Find the sine of all the numbers in d
 sine_d = np.sin(d)
-print(f"The Sine of d is\n{sine_d}")
+print(f"The Sine of d is\n{sine_d}\n")
 
 # Exercise 2 - Find the cosine of all the numbers in d
 cos_d = np.cos(d)
-print(f"The Cosine of d is\n{cos_d}")
+print(f"The Cosine of d is\n{cos_d}\n")
 
 # Exercise 3 - Find the tangent of all the numbers in d
 tan_d = np.tan(d)
-print(f"The Tangent of d is\n{tan_d}")
+print(f"The Tangent of d is\n{tan_d}\n")
 
 # Exercise 4 - Find all the negative numbers in d
 d_negatives = d[d < 0]
-print(f"These are these negatives in d\n{d_negatives}")
+print(f"These are the negatives in d\n{d_negatives}\n")
 
 # Exercise 5 - Find all the positive numbers in d
 d_positives = d[d > 0]
-print(f"These are these positives in d\n{d_positives}")
+print(f"These are the positives in d\n{d_positives}\n")
 
 # Exercise 6 - Return an array of only the unique numbers in d.
 d_uniques = np.unique(d)
-print(f"These are the unique numbers in d\n{d_uniques}")
+print(f"These are the unique numbers in d\n{d_uniques}\n")
 
 # Exercise 7 - Determine how many unique numbers there are in d.
-print(f"There are {len(d_uniques)} unique numbers in d")
+print(f"There are {len(d_uniques)} unique numbers in d\n")
 
 # Exercise 8 - Print out the shape of d.
 d_shape = np.shape(d)
-print(f"The shape of d is {d_shape}")
+print(f"The shape of d is {d_shape}\n")
 
 # Exercise 9 - Transpose and then print out the shape of d.
 d_transpose = np.transpose(d)
-print(f"Here is the transpose of d,\n{d_transpose}\nIt's shape is {np.shape(d_transpose)}")
+print(f"Here is the transpose of d,\n{d_transpose}\nIt's shape is {np.shape(d_transpose)}\n")
 
 # Exercise 10 - Reshape d into an array of 9 x 2
-d_9x2 = np.reshape(d,(2,9))
+d_9x2 = np.reshape(d,(9,2))
 print(f"d reshaped into a 9x2 matrix is\n{d_9x2}")
