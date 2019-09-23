@@ -100,7 +100,7 @@ for row in b:
         squares_of_b.append(number**2)
 
 squares_of_b = b ** 2
-print(squares_of_b)
+
 # Exercise 7 - refactor using numpy to determine the odds_in_b
 odds_in_b = []
 for row in b:
@@ -108,6 +108,7 @@ for row in b:
         if(number % 2 != 0):
             odds_in_b.append(number)
 
+odds_in_b = b[b % 2 == 1]
 
 # Exercise 8 - refactor the following to use numpy to filter only the even numbers
 evens_in_b = []
@@ -116,13 +117,19 @@ for row in b:
         if(number % 2 == 0):
             evens_in_b.append(number)
 
+evens_in_b = b[b % 2 == 0]
+
 # Exercise 9 - print out the shape of the array b.
+b_shape = np.shape(b)
 
 # Exercise 10 - transpose the array b.
+b_transpose = np.transpose(b)
 
 # Exercise 11 - reshape the array b to be a single list of 6 numbers. (1 x 6)
+one_dimensional_b = np.reshape(b,(1,6))
 
 # Exercise 12 - reshape the array b to be a list of 6 lists, each containing only 1 number (6 x 1)
+one_dimensional_b = np.reshape(b,(6,1))
 
 ## Setup 3
 c = [
