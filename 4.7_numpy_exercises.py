@@ -137,23 +137,43 @@ c = [
     [4, 5, 6],
     [7, 8, 9]
 ]
+c = np.array(c)
 
 # HINT, you'll first need to make sure that the "c" variable is a numpy array prior to using numpy array methods.
 # Exercise 1 - Find the min, max, sum, and product of c.
+min_of_c = np.min(c)
+max_of_c = np.max(c)
+sum_of_c = np.sum(c)
+product_of_c = np.product(c)
+print("The min, max, sum, and product of c are {}, {}, {}, and {}, respectively".format(min_of_c, max_of_c, sum_of_c, product_of_c))
 
 # Exercise 2 - Determine the standard deviation of c.
+c_std = np.std(c)
+print(f"The standard deviation of c is {c_std}")
 
 # Exercise 3 - Determine the variance of c.
+c_variance = np.var(c)
+print(f"The variance of c is {c_variance}")
 
 # Exercise 4 - Print out the shape of the array c
+c_shape = np.shape(c)
+print(f"The shape of c is {c_shape}")
 
 # Exercise 5 - Transpose c and print out transposed result.
+c_transpose = np.transpose(c)
+print(f"The transpose of c is\n{c_transpose}")
 
 # Exercise 6 - Multiply c by the c-Transposed and print the result.
+gramian_matrix_c = c * c_transpose
+print(f"The Gramian Matrix of c is \n{gramian_matrix_c}")
 
 # Exercise 7 - Write the code necessary to sum up the result of c times c transposed. Answer should be 261
+sum_gram_c = np.sum(gramian_matrix_c)
+print(f"the sum of the Gramian Matrix of c is {sum_gram_c}")
 
 # Exercise 8 - Write the code necessary to determine the product of c times c transposed. Answer should be 131681894400.
+product_gram_c = np.product(gramian_matrix_c)
+print(f"the product of the Gramian Matrix of c is {product_gram_c}")
 
 
 ## Setup 4
