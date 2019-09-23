@@ -182,23 +182,43 @@ d = [
     [45, -90, -30, 270, 90, 0],
     [60, 45, -45, 90, -45, 180]
 ]
-
+d = np.array(d)
+print(f"\n\n Our new array, d, is\n{d}")
 # Exercise 1 - Find the sine of all the numbers in d
+sine_d = np.sin(d)
+print(f"The Sine of d is\n{sine_d}")
 
 # Exercise 2 - Find the cosine of all the numbers in d
+cos_d = np.cos(d)
+print(f"The Cosine of d is\n{cos_d}")
 
 # Exercise 3 - Find the tangent of all the numbers in d
+tan_d = np.tan(d)
+print(f"The Tangent of d is\n{tan_d}")
 
 # Exercise 4 - Find all the negative numbers in d
+d_negatives = d[d < 0]
+print(f"These are these negatives in d\n{d_negatives}")
 
 # Exercise 5 - Find all the positive numbers in d
+d_positives = d[d > 0]
+print(f"These are these positives in d\n{d_positives}")
 
 # Exercise 6 - Return an array of only the unique numbers in d.
+d_uniques = np.unique(d)
+print(f"These are the unique numbers in d\n{d_uniques}")
 
 # Exercise 7 - Determine how many unique numbers there are in d.
+print(f"There are {len(d_uniques)} unique numbers in d")
 
 # Exercise 8 - Print out the shape of d.
+d_shape = np.shape(d)
+print(f"The shape of d is {d_shape}")
 
 # Exercise 9 - Transpose and then print out the shape of d.
+d_transpose = np.transpose(d)
+print(f"Here is the transpose of d,\n{d_transpose}\nIt's shape is {np.shape(d_transpose)}")
 
 # Exercise 10 - Reshape d into an array of 9 x 2
+d_9x2 = np.reshape(d,(2,9))
+print(f"d reshaped into a 9x2 matrix is\n{d_9x2}")
