@@ -1,24 +1,22 @@
 import matplotlib.pyplot as plt 
 import math
 
-
-x1 = [.1 * i for i in range(0,101)]
-y1 = [i ** .5 for i in x1]
-plt.plot(x1,y1, label = '$\sqrt{x}$')
-
-x2 = [.1 * i for i in range(0,101)]
-y2 = [i ** 3 for i in x2]
-plt.plot(x2,y2, label = '$y^3$')
-
-x3 = [i* .01 for i in range(1001)]
-y3 = [math.tan(i) for i in x3]
-plt.plot(x3,y3, label = '$tan x$')
-
-x4 = [i* .1 for i in range(100)]
-y4 = [2 ** i for i in x4]
-plt.plot(x4,y4, label = '$2^x$')
-
-plt.legend()
-plt.ylim(0,5)
-plt.xlim(0,5)
+financial_data = [
+['10-03-16',774.25,776.065002,769.5,772.559998],
+['10-04-16',776.030029,778.710022,772.890015,776.429993],
+['10-05-16',779.309998,782.070007,775.650024,776.469971],
+['10-06-16',779,780.47998,775.539978,776.859985],
+['10-07-16',779.659973,779.659973,770.75,775.080017]]
+x,y1,y2,y3,y4 = [],[],[],[],[]
+for i in financial_data:
+    x.append(int(i[0][-5:-3]))
+    y1.append(i[1])
+    y2.append(i[2])
+    y3.append(i[3])
+    y4.append(i[4])
+plt.plot(x,y1)
+plt.plot(x,y2)
+plt.plot(x,y3)
+plt.plot(x,y4)
+plt.xticks([3,4,5,6,7],['03\nOCT\n2016', '04', '05', '06', '07'])
 plt.show()

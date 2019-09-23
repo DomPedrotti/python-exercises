@@ -111,3 +111,33 @@ plt.xlim(0,5)
 plt.show()
 
 #Hotjar 15 exercises
+#Write a Python program to draw a line using given axis values with suitable label in the x axis , y axis and a title
+x = [1,2,3]
+y = [2,4,1]
+plt.plot(x,y)
+plt.xlim(1,3)
+plt.ylim(1,4)
+plt.xlabel('x - axis')
+plt.ylabel('y - axis')
+plt.title('sample plot!')
+plt.show()
+
+#Write a Python program to draw line charts of the financial data of Alphabet Inc. between October 3, 2016 to October 7, 2016.
+financial_data = [
+[10-03-16,774.25,776.065002,769.5,772.559998],
+[10-04-16,776.030029,778.710022,772.890015,776.429993],
+[10-05-16,779.309998,782.070007,775.650024,776.469971],
+[10-06-16,779,780.47998,775.539978,776.859985],
+[10-07-16,779.659973,779.659973,770.75,775.080017]]
+x,y1,y2,y3,y4 = [],[],[],[],[]
+for i in financial_data:
+    x.append(i[0][-5:-7])
+    y1.append(i[1])
+    y2.append(i[2])
+    y3.append(i[3])
+    y4.append(i[4])
+plt.plot(x,y1)
+plt.plot(x,y2)
+plt.plot(x,y3)
+plt.plot(x,y4)
+plt.show()
