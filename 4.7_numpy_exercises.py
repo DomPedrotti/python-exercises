@@ -131,7 +131,7 @@ b_transpose = np.transpose(b)
 one_dimensional_b = np.reshape(b,(1,6))
 
 # Exercise 12 - reshape the array b to be a list of 6 lists, each containing only 1 number (6 x 1)
-one_dimensional_b = np.reshape(b,(6,1))
+six_dimensional_b = np.reshape(b,(6,1))
 
 ## Setup 3
 c = [
