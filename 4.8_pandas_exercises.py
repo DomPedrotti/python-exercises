@@ -96,11 +96,22 @@ curve_amount = 100-exam_scores.max()
 curved_scores = curve_amount+ exam_scores
 
 #Use pandas to create a Series from the following string:
-
-chars = pd.Series('hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy')
+chars = pd.Series(list('hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy'))
 # What is the most frequently occuring letter? Least frequently occuring?
-
+char_counts = chars.value_counts()
+max_freq_num = char_counts.max()
+min_freq_num = char_counts.min()
+max_freq_num = char_counts.max()
+max_freq_char = char_counts[char_counts == max_freq_num]
+min_freq_char = char_counts[char_counts == min_freq_num]
 # How many vowels are in the list?
+char_count_keys = pd.Series(char_counts.keys())
+is_vowel_mask = np.array(char_count_keys.apply(lambda x: True if x in 'aeiou' else False))
+sum_vowels = char_counts[is_vowel_mask].sum()
 # How many consonants are in the list?
+char_counts.sum()-sum_vowels
 # Create a series that has all of the same letters, but uppercased
+upper_chars = chars.str.upper()
 # Create a bar plot of the frequencies of the 6 most frequently occuring letters.
+char_counts.head(6).plot.bar()
+plt.show()
