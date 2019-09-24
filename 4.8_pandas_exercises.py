@@ -13,7 +13,8 @@ fruits.unique()
 # Determine how many times each value occurs in the series.
 fruits.value_counts()
 # Determine the most frequently occurring fruit name from the series.
-fruits.describe()[2]
+fruits.describe()[2] #or
+fruits.value_counts().idxmax()
 # Determine the least frequently occurring fruit name from the series.
 fruits.value_counts()[fruits.value_counts() == 1]
 # Write the code to get the longest string from the fruits series.
@@ -31,7 +32,8 @@ def count_a(x):
         if i == 'a':
             counter += 1
     return counter
-fruits.apply(count_a)
+counted_a = fruits.apply(count_a)
+list(zip(fruits.unique(),counted_a))
 # Output the number of vowels in each and every fruit.
 def count_vowels(x):
     counter = 0
@@ -41,12 +43,12 @@ def count_vowels(x):
     return counter
 fruits.apply(count_vowels)
 # Use the .apply method and a lambda function to find the fruit(s) containing two or more "o" letters in the name.
-fruits[fruits.apply(lambda x: True if x.count('o') > 1 else False)]
+fruits[fruits.apply(lambda x: x.count('o') > 1)]
 # Write the code to get only the fruits containing "berry" in the name
-mask = fruits.apply(lambda x: True if 'berry' in x else False)
+mask = fruits.apply(lambda x: 'berry' in x)
 fruits[mask]
 # Write the code to get only the fruits containing "apple" in the name
-mask = fruits.apply(lambda x: True if 'apple' in x else False)
+mask = fruits.apply(lambda x: 'apple' in x)
 fruits[mask]
 # Which fruit has the highest amount of vowels?
 most_vowels = fruits.apply(count_vowels).max()
