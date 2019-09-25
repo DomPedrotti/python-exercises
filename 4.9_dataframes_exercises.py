@@ -35,4 +35,51 @@ df.sort_values(by = ['passing_english', 'english'])
 
 df['grade'] = (df['math']+df['english']+df['reading'])/3
 
-print(df)
+# Load the mpg dataset. Read the documentation for the dataset and use it for the following questions:
+mpg = data('mpg')
+
+# How many rows and columns are there?
+row_columns = mpg.shape
+
+# What are the data types of each column?
+column_types = mpg.dtypes
+
+# Summarize the dataframe with .info and .describe
+mpg_info = mpg.info()
+mpg_describe = mpg.describe()
+
+# Rename the cty column to city.
+mpg = mpg.rename(columns = {'cty': 'city'})
+
+# Rename the hwy column to highway.
+
+mpg = mpg.rename(columns = {'hwy' : 'highway'})
+# Do any cars have better city mileage than highway mileage?
+mpg[mpg['city'] > mpg['highway']]
+
+# Create a column named mileage_difference this column should contain the difference between highway and city mileage for each car.
+mpg['mileage_difference'] = mpg['highway']- mpg['city']
+# Which car (or cars) has the highest mileage difference?
+max_mileage_diff_num = mpg['mileage_difference'].max()
+max_mileage_diff_row = mpg[mpg['mileage_difference'] == max_mileage_diff_num]
+# Which compact class car has the lowest highway mileage? The best?
+compact_class = mpg[mpg['class'] == 'compact']
+most_compact = compact_class['highway'].max()
+least_compact = compact_class['highway'].min()
+most_compact_rows = compact_class[compact_class['highway'] == most_compact]
+least_compact_rows = compact_class[compact_class['highway'] == least_compact]
+
+
+# Create a column named average_mileage that is the mean of the city and highway mileage.
+mpg['average_mileage'] = (mpg['highway'] + mpg['city'])/2
+
+# Which dodge car has the best average mileage? The worst?
+dodges = mpg[mpg.manufacturer == 'dodge']
+most_dodge = dodges.average_mileage.max()
+least_dodge = dodges.average_mileage.min()
+most_dodge_rows = dodges[dodges.average_mileage == most_dodge]
+least_dodge_rows = dodges[dodges.average_mileage == least_dodge]
+
+print(most_dodge_rows)
+print(least_dodge_rows)
+
