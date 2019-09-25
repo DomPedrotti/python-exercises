@@ -45,7 +45,7 @@ row_columns = mpg.shape
 column_types = mpg.dtypes
 
 # Summarize the dataframe with .info and .describe
-mpg_info = mpg.info()
+mpg_info = mpg.info
 mpg_describe = mpg.describe()
 
 # Rename the cty column to city.
@@ -80,6 +80,28 @@ least_dodge = dodges.average_mileage.min()
 most_dodge_rows = dodges[dodges.average_mileage == most_dodge]
 least_dodge_rows = dodges[dodges.average_mileage == least_dodge]
 
-print(most_dodge_rows)
-print(least_dodge_rows)
+# Load the Mammals dataset. Read the documentation for it, and use the data to answer these questions:
+mam = data('Mammals')
+# How many rows and columns are there?
+mam_shape = mam.shape
+
+# What are the data types?
+mam_types = mam.dtypes
+
+# Summarize the dataframe with .info and .describe
+mam.info
+mam_descrption = mam.describe()
+# What is the the weight of the fastest animal?
+top_speed = mam.speed.max()
+top_speed_row = mam[mam.speed == top_speed]
+# What is the overal percentage of specials?
+count_special = mam.specials.sum()
+portion_specials = count_special / mam.specials.count()
+percent_specials = portion_specials * 100
+
+# How many animals are hoppers that are above the median speed? What percentage is this?
+hoppers = mam[mam.hoppers]
+median_speed = mam.speed.median()
+num_fast_hoppers = hoppers[hoppers.speed >= median_speed].shape[0]
+
 
