@@ -84,18 +84,33 @@ a_float = a.str.replace(',','').str.replace('$','').astype(float)
 
 #Use pandas to create a Series from the following exam scores:
 exam_scores = pd.Series([60, 86, 75, 62, 93, 71, 60, 83, 95, 78, 65, 72, 69, 81, 96, 80, 85, 92, 82, 78])
+
+
+
 # What is the minimum exam score? The max, mean, median?
 exam_scores.describe()
 exam_scores.median()
 
+
+
+
 # Plot a histogram of the scores.
 exam_scores.plot.hist()
+
+
+
 # Convert each of the numbers above into a letter grade. For example, 86 should be a 'B' and 95 should be an 'A'.
 letter_scores = pd.cut(exam_scores, bins = [0,60,70,80,90,100], labels = ['f','d','c','b','a'])
+
+
+
 
 # Write the code necessary to implement a curve. I.e. that grade closest to 100 should be converted to a 100, and that many points should be given to every other score as well.
 curve_amount = 100-exam_scores.max()
 curved_scores = curve_amount+ exam_scores
+
+
+
 
 #Use pandas to create a Series from the following string:
 chars = pd.Series(list('hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy'))
@@ -108,7 +123,7 @@ max_freq_char = char_counts[char_counts == max_freq_num]
 min_freq_char = char_counts[char_counts == min_freq_num]
 # How many vowels are in the list?
 char_count_keys = pd.Series(char_counts.keys())
-is_vowel_mask = np.array(char_count_keys.apply(lambda x: True if x in 'aeiou' else False))
+is_vowel_mask = np.array(char_count_keys.apply(lambda x: x in 'aeiou'))
 sum_vowels = char_counts[is_vowel_mask].sum()
 # How many consonants are in the list?
 char_counts.sum()-sum_vowels
