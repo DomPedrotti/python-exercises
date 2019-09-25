@@ -22,4 +22,17 @@ df = pd.DataFrame({'name': students,
 # Create a column named passing_english that indicates whether each student has a passing grade in reading.
 df['passing_english'] = df.english > 70
 
+# Sort the english grades by the passing_english column. How are duplicates handled?
+df.sort_values(by = 'passing_english')
+
+# Sort the english grades first by passing_english and then by student name. All the students that are failing english should be first, and within the students that are failing english they should be ordered alphabetically. The same should be true for the students passing english. (Hint: you can pass a list to the .sort_values method)
+df.sort_values(by = ['passing_english', 'name'])
+
+# Sort the english grades first by passing_english, and then by the actual english grade, similar to how we did in the last step.
+df.sort_values(by = ['passing_english', 'english'])
+
+# Calculate each students overall grade and add it as a column on the dataframe. The overall grade is the average of the math, english, and reading grades.
+
+df['grade'] = (df['math']+df['english']+df['reading'])/3
+
 print(df)
