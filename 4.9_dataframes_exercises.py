@@ -103,5 +103,3 @@ percent_specials = portion_specials * 100
 hoppers = mam[mam.hoppers]
 median_speed = mam.speed.median()
 num_fast_hoppers = hoppers[hoppers.speed >= median_speed].shape[0]
-
-
