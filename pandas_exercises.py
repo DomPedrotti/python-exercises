@@ -45,13 +45,13 @@ query = 'select * from departments'
 departments = pd.read_sql(query, url)
 # Once you have successfully run a query:
     # Intentionally make a typo in the database url. What kind of error message do you see? "Access denied for user 'bayes_816'@'%' to database 'employee'")
-# url = get_db_url('employee')
-# query = 'select * from departments'
-# departments = pd.read_sql(query, url)
+url = get_db_url('employee')
+query = 'select * from departments'
+departments = pd.read_sql(query, url)
     # Intentionally make an error in your SQL query. What does the error message look like? "Table 'employees.department' doesn't exist"
-# url = get_db_url('employees')
-# query = 'select * from department'
-# departments = pd.read_sql(query, url)
+url = get_db_url('employees')
+query = 'select * from department'
+departments = pd.read_sql(query, url)
 # Read the employees and titles tables into two separate dataframes
 emp_qry = 'select * from employees'
 tit_qry = 'select * from titles'
@@ -62,7 +62,7 @@ emp_titles= employees[['emp_no','first_name','last_name',]] .merge(titles[['emp_
 print(emp_titles.groupby('title').count())
 # Join the employees and titles dataframes together.
 # Visualize how frequently employees change titles.
-
+            #look as how many titles employees held
 # For each title, find the hire date of the employee that was hired most recently with that title.
 emp_titles[['title','hire_date']].groupby('title').max() 
 # Write the code necessary to create a cross tabulation of the number of titles by department. (Hint: this will involve a combination of SQL and python/pandas code)
@@ -74,3 +74,16 @@ join titles
 using(emp_no)
 where titles.`to_date` > now(); 
 '''
+dept_tits = pd.read_sql(query, url)  
+pd.crosstab(dept_tits.dept, dept_tits.title)  
+
+# Use your get_db_url function to help you explore the data from the chipotle database. Use the data to answer the following questions:
+url = get_db_url('chipotle')
+df = pd.read_sql('select * from orders', url)                
+# What is the total price for each order?
+df.item_price = df.item_price.str.replace('$','').apply(float)    
+order_price = df[['order_id','item_price']].groupby('order_id').sum()      
+# What are the most popular 3 items?
+df.groupby('item_name').count().sort_values('id').tail(3)    
+# Which item has produced the most revenue?
+df[['item_name','item_price']].groupby('item_name').sum().sort_values().tail(1)
