@@ -48,7 +48,7 @@ sns.relplot(x = 'Petal.Length', y = 'Petal.Width', data = iris)
 iris['Sepal_lentowid'] = iris['Sepal.Length']/iris['Sepal.Width']
 sns.boxplot(data = iris, x = 'Species', y = 'Sepal_lentowid')
 
-
+iris.corr()
 # In[ ]:
 
 
@@ -64,7 +64,6 @@ sns.boxplot(data = iris, x = 'Species', y = 'petal_lentowid')
 sns.relplot(data = iris, x = 'Petal.Length', y = 'Petal.Width',  hue = 'Species')
 sns.relplot(data = iris, x = 'Sepal.Length', y = 'Sepal.Width',  hue = 'Species')
 pd
-
 
 # In[ ]:
 
@@ -127,9 +126,11 @@ plt.show()
 
 # In[117]:
 
-
+# Load the swiss dataset and read it's documentation. Create visualizations to answer the following questions:
 dta = data('swiss')
-dta['is_catholic'] = dta['Catholic'] >= 50
+
+# Create an attribute named is_catholic that holds a boolean value of whether or not the province is Catholic. (Choose a cutoff point for what constitutes catholic)
+dta['is_catholic'] = dta['Catholic'] >= 70
 # catholic_fertility = dta[['is_catholic', 'Fertility']].groupby('is_catholic').mean()
 # catholic_fertility
 sns.boxplot(data = dta, x = 'is_catholic', y = "Fertility")
@@ -137,7 +138,7 @@ sns.boxplot(data = dta, x = 'is_catholic', y = "Fertility")
 
 # In[126]:
 
-
+#What measure correlates most strongly with fertility?
 dta = data('swiss')
 plt.subplot(2,2,1)
 sns.regplot(data = dta, x = 'Fertility', y = 'Agriculture')
@@ -157,7 +158,7 @@ plt.title('Cath')
 
 plt.subplots_adjust(hspace = 1)
 
-
+dta.corr()
 # In[153]:
 
 
@@ -176,32 +177,35 @@ url = get_db_url('chipotle')
 # In[146]:
 
 
-data = pd.read_sql('SELECT * from orders', url)
+dta = pd.read_sql('SELECT * from orders', url)
 
 
 # In[135]:
 
 
-type(data)
+type(dta)
 
 
 # In[145]:
 
 
-data.info()
+dta.info()
 
 
 # In[ ]:
 
 
-data['item_price'] = data.item_price.str.replace('$','').apply(float)
+dta['item_price'] = data.item_price.str.replace('$','').apply(float)
 
 
 # In[152]:
 
 
-most_popular = data[['item_name', 'quantity', 'item_price']].groupby('item_name')
-bar_data = most_popular[['quantity', 'item_price']].apply(sum).sort_values('quantity').tail(4)
+most_popular = (data[['item_name', 'quantity', 'item_price']]
+    .groupby('item_name')
+)
+bar_data = (most_popular[['quantity', 'item_price']]
+    .apply(sum).sort_values('quantity').tail(4))
 bar_data
 
 
@@ -220,7 +224,7 @@ sns.barplot(x = bar_data.index, y = 'item_price', data = bar_data)
 #reaction time.
 
 stdy = data('sleepstudy')
-
+stdy.Subject = 'subject_' + stdy.Subject.astype(str)
 
 # In[181]:
 
@@ -232,7 +236,9 @@ stdy.head(5)
 # In[187]:
 
 
-sns.relplot(x = 'Days', y = 'Reaction',hue = 'Subject',palette = 'Greens', data = stdy, kind = 'line')
+
+sns.lineplot(x = 'Days', y = 'Reaction',hue = 'Subject', data = stdy)
+sns.lineplot(x = 'Days', y = 'Reaction', data = stdy)
 
 
 # In[ ]:
